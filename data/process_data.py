@@ -6,7 +6,14 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
-    
+    """
+    load the messages and categories into one single data frame
+    Parameters: 
+    - messages_filepath: The full path to the messages .csv file (String)
+    - categories_filepath: The full path to the categories .csv file (String)
+    Returns:
+    - The merged dataframe (Pandas dataframe)
+    """
     # load messages dataset
     messages = pd.read_csv(messages_filepath)
     
@@ -19,6 +26,14 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    """
+    cleans the data in the data frame and remove duplicates
+    Parameters:
+    - df: The Pandas dataframe to be cleaned (Pandas dataframe)
+    Returns:
+    - df: The cleaned Pandas dataframe (Pandas dataframe)
+
+    """
     categories = df.categories.str.split(pat=';',expand=True)
     row = categories.iloc[0,:]
     
@@ -49,6 +64,16 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename, table_name='disaster_ds'):
+    """
+    Saves the dataframe into a database file.
+    Parameters:
+    - df: The dataframe to be saved (Pandas dataframe)
+    - database_filename: The database file name to which the dataframe will be saved (String)
+    - table_name (optional): The database table name to which the dataframe will be saved
+    
+    Returns:
+    None
+    """
     engine = create_engine('sqlite:///' + database_filename)
     df.to_sql(table_name, engine, index=False)
 
