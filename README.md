@@ -15,7 +15,7 @@ To install and run this application, you need following libraries:
 
 ### 3. Installation:
 To install the project on your local machine, clone this repository by running:
-git clone https://github.com/AlManea/DisasterResponseApp.git
+`git clone https://github.com/AlManea/DisasterResponseApp.git`
 
 
 ### 4. Running Instructions:
@@ -33,9 +33,9 @@ git clone https://github.com/AlManea/DisasterResponseApp.git
 
 ### 5. Files Descriptions:
 Below is a short description of the main files in this repository:
- - 'data/process_data.py': This file is a python script that loads the data from the 'messages.csv' and 'categories.csv' files, merges them, and loads them to a databse file.
- - 'models/train_classifier.py': This file is a python script that creates an AdaBoost machine learning model, tains the model and does a grid-search to find the best model parameters. It also stores the model to a .pkl file
- - 'app/run.py': This file is the main application file, built with Flask framework. It uses the data base files to visualize the message data and the trained ML model to predict an input message importance and categories.
+ - `data/process_data.py`: This file is a python script that loads the data from the 'messages.csv' and 'categories.csv' files, merges them, and loads them to a databse file.
+ - `models/train_classifier.py`: This file is a python script that creates an AdaBoost machine learning model, tains the model and does a grid-search to find the best model parameters. It also stores the model to a .pkl file
+ - `app/run.py`: This file is the main application file, built with Flask framework. It uses the data base files to visualize the message data and the trained ML model to predict an input message importance and categories.
  
  ### 6. Acknowledgments:
-This project was build as part of <a href=http=https://www.udacity.com/>Udacity</a>'s Data Scientist Nanodegree Program, and it uses code snippets/files from the course. It also uses data from <a href=https://www.figure-eight.com/>Figure Eight</a>. The support from both <a href=http=https://www.udacity.com/>Udacity</a> and <a href=https://www.figure-eight.com/>Figure Eight</a> is greatly acknowledged. 
+This project was build as part of <a href=http=https://www.udacity.com/>Udacity</a>'s Data Scientist Nanodegree Program, and it uses code snippets/files from the course. It also uses data from <a href=https://www.figure-eight.com/>Figure Eight</a>. The support from both <a href=https://www.udacity.com/>Udacity</a> and <a href=https://www.figure-eight.com/>Figure Eight</a> is greatly acknowledged. 
