@@ -27,6 +27,16 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import precision_score, accuracy_score, f1_score, recall_score, fbeta_score, make_scorer, classification_report
 
 def load_data(database_filepath):
+    """
+    loads the database table into a single dataframe, then populates the messages and categories arrays
+    Parameters:
+     - database_filepath: The full path for the database file (without the sqlite handle) (String)
+    Returns:
+     - X: The messages value array (numpy.ndarray)
+     - Y: The categories value (numpy.ndarray)
+     - categories: The categories (String list)
+    
+    """
     # load data from database
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql_table('disaster_ds',engine)
@@ -37,7 +47,14 @@ def load_data(database_filepath):
     return X, Y, categories
 
 def tokenize(text):
+    """
+    Processes the input text by tokenizing it, removing stop words, and lammetizing it.
+    Parameters:
+     - text: The text to be processed (String)
+    Returns:
+     - tks2: The tokens (String list)
     
+    """
     # detect urls and replace them with the 'urlplaceholder' text
     regexp_url = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
     detected_urls = re.findall(regexp_url, text)
@@ -65,7 +82,12 @@ def tokenize(text):
 
 
 def build_model():
-    
+    """
+    Builds the machine learning model estimator
+    Parameters: None
+    Returns:
+     - cv: The built model estimator (sklearn.model_selection.GridSearchCV).
+    """
     # model pipeline
     pipeline = Pipeline([
             ('vectorizer', CountVectorizer(tokenizer=tokenize)),
@@ -87,6 +109,15 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    Evaluates the model performance
+    Parameters: 
+     - model: The ML model estimator to be evaluated (sklearn.model_selection.GridSearchCV).
+     - X_test: Input messages data (numpy.ndarray)
+     - Y_test: Expected output classification (numpy.ndarray)
+     - category_names: The disaster category names (String list)
+    Returns: None
+    """
     # use the model for prediction
     y_pred = model.predict(X_test)
     
@@ -95,11 +126,26 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    """
+    Saves the machine learning model to a .pkl file
+    Parameters:
+     - model: The ML model estimator to be saved (sklearn.model_selection.GridSearchCV).
+     - model_filepath: The file path/name where the model should be saved (String).
+     Retruns: None
+    """
     # save the model to disk
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
 def batch_classification_report(y_actual, y_pred, categories):
+    """
+    Generates a classification performance report for all message categories
+    Parameters:
+     - y_actual: The expected true value for classification (numpy.ndarray)
+     - y_pred:   The model predicted classifications (numpy.ndarray)
+     - categories: The categories names (String list)
+    Retruns: None
+    """
     for i in range(0, len(categories)):
         print(i+1,") \'", categories[i], "\'", " Performance Statistics:\n-----------------------------------------------------------\n\t - Accuracy:\t{:.4f}\n\t - Precision:\t{:.4f}\n\t - Recall:\t{:.4f}\n\t - F1_score:\t{:.4f}\n".format(
             accuracy_score(y_actual[:, i], y_pred[:, i]),
