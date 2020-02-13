@@ -15,6 +15,7 @@ To install and run this application, you need following libraries:
 
 ### 3. Installation:
 To install the project on your local machine, clone this repository by running:
+
 `git clone https://github.com/AlManea/DisasterResponseApp.git`
 
 
@@ -38,4 +39,4 @@ Below is a short description of the main files in this repository:
  - `app/run.py`: This file is the main application file, built with Flask framework. It uses the data base files to visualize the message data and the trained ML model to predict an input message importance and categories.
  
  ### 6. Acknowledgments:
-This project was build as part of <a href=http=https://www.udacity.com/>Udacity</a>'s Data Scientist Nanodegree Program, and it uses code snippets/files from the course. It also uses data from <a href=https://www.figure-eight.com/>Figure Eight</a>. The support from both <a href=https://www.udacity.com/>Udacity</a> and <a href=https://www.figure-eight.com/>Figure Eight</a> is greatly acknowledged. 
+This project was build as part of <a href=https://www.udacity.com/>Udacity</a>'s Data Scientist Nanodegree Program, and it uses code snippets/files from the course. It also uses data from <a href=https://www.figure-eight.com/>Figure Eight</a>. The support from both <a href=https://www.udacity.com/>Udacity</a> and <a href=https://www.figure-eight.com/>Figure Eight</a> is greatly acknowledged. 
