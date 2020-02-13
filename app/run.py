@@ -24,7 +24,14 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 def tokenize(text):
+    """
+    Processes the input text by tokenizing it, removing stop words, and lammetizing it.
+    Parameters:
+     - text: The text to be processed (String)
+    Returns:
+     - tks2: The tokens (String list)
     
+    """
     # detect urls and replace them with the 'urlplaceholder' text
     regexp_url = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
     detected_urls = re.findall(regexp_url, text)
@@ -49,17 +56,6 @@ def tokenize(text):
         
     # return the tokens
     return tks_2
-
-def tokenize_original(text):
-    tokens = word_tokenize(text)
-    lemmatizer = WordNetLemmatizer()
-
-    clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
-
-    return clean_tokens
 
 # load data
 engine = create_engine('sqlite:///../data/DisasterResponse.db')
